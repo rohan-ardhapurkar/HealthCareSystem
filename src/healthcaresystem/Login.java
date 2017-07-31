@@ -48,7 +48,7 @@ public class Login extends JFrame implements ActionListener {
 
         //add event on button
         btnLogin.addActionListener(this);
-
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         setSize(600, 400);
         setVisible(true);
 
@@ -62,9 +62,12 @@ public class Login extends JFrame implements ActionListener {
 
         if (username.equals("admin") && password.equals("admin")) {
             JOptionPane.showMessageDialog(this, "Login Success");
-            new MasterForm();
+            setVisible(false);
+            new HealthCareMaster();
         } else {
-            JOptionPane.showMessageDialog(this, "Login Failed");
+            JOptionPane.showMessageDialog(this, "Login Failed", "FAILED", JOptionPane.ERROR_MESSAGE);
+            txtUser.setText("");
+            txtPass.setText("");
         }
     }
 }
