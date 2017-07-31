@@ -49,6 +49,7 @@ public class Login extends JFrame implements ActionListener {
         //add event on button
         btnLogin.addActionListener(this);
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        setLocation(50, 50);
         setSize(600, 400);
         setVisible(true);
 

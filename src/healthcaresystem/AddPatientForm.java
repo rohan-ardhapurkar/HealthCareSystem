@@ -15,7 +15,7 @@ public class AddPatientForm extends JFrame implements ActionListener {
     //Container c;
 
     AddPatientForm() {
-      
+
         lblHeader = new JLabel("FILL PATIENT DETAILS HERE");
         lblPatientName = new JLabel("Patient Name :");
         lblEmail = new JLabel("EMAIL :");
@@ -56,7 +56,7 @@ public class AddPatientForm extends JFrame implements ActionListener {
         //set the positions of the buttons on form
         btnRegister.setBounds(150, 400, 100, 30);
         //btnReset.setBounds(300, 400, 100, 30);
- }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
