@@ -10,12 +10,12 @@ public class AddPatientForm extends JFrame implements ActionListener {
     JLabel lblHeader, lblPatientName, lblEmail, lblContact, lblAddress, lblDescription, lblEnqDate;
     JTextField txtPatientName, txtEmail, txtContact, txtAddress, txtDescription, txtEnqDate;
     JButton btnRegister;
-    JInternalFrame childFrame = new JInternalFrame("Patient Add", true, true, true, true);
-    JDesktopPane desktopPane = new JDesktopPane();
-    //Container c;
+   
+    Container c;
 
     AddPatientForm() {
-
+        setLayout(null);
+        c=this.getContentPane();
         lblHeader = new JLabel("FILL PATIENT DETAILS HERE");
         lblPatientName = new JLabel("Patient Name :");
         lblEmail = new JLabel("EMAIL :");
@@ -52,10 +52,31 @@ public class AddPatientForm extends JFrame implements ActionListener {
         txtAddress.setBounds(200, 250, 170, 30);
         txtDescription.setBounds(200, 300, 170, 30);
         txtEnqDate.setBounds(200, 350, 170, 30);
-
+           
+        c.add(lblHeader);
+        c.add(lblPatientName);
+        c.add(lblEmail);
+        c.add(lblContact);
+        c.add(lblAddress);
+        c.add(lblDescription);
+        c.add(lblEnqDate);
+        
+        
+        c.add(txtPatientName);
+        c.add(txtEmail);
+        c.add(txtContact);
+        c.add(txtAddress);
+        c.add(txtDescription);
+        c.add(txtEnqDate);
+        
+        
+        c.add(btnRegister);
+        
         //set the positions of the buttons on form
         btnRegister.setBounds(150, 400, 100, 30);
         //btnReset.setBounds(300, 400, 100, 30);
+        setSize(500,500);
+        setVisible(true);
     }
 
     @Override

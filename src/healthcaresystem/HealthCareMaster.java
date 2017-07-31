@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 import pojo.PatientPojo;
 
-public class HealthCareMaster extends JFrame implements ActionListener {
+public class HealthCareMaster extends JFrame implements MouseListener {
 
     JTabbedPane jtp;
     JPanel patientPanel, diseasePanel, medicinePanel, reportPanel;
@@ -23,6 +23,7 @@ public class HealthCareMaster extends JFrame implements ActionListener {
         medicinePanel = new JPanel();
         reportPanel = new JPanel();
 
+        patientPanel.addMouseListener(this);
         //create JTabbedPane on the form
         jtp = new JTabbedPane();
 
@@ -43,7 +44,26 @@ public class HealthCareMaster extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == patientPanel) {
+            new AddPatientForm();
+        }
     }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
 }
