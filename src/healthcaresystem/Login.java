@@ -64,7 +64,8 @@ public class Login extends JFrame implements ActionListener {
         if (username.equals("admin") && password.equals("admin")) {
             JOptionPane.showMessageDialog(this, "Login Success");
             setVisible(false);
-            new HealthCareMaster();
+            //new HealthCareMaster();
+            new AddPatientForm();
         } else {
             JOptionPane.showMessageDialog(this, "Login Failed", "FAILED", JOptionPane.ERROR_MESSAGE);
             txtUser.setText("");
