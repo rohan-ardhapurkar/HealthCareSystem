@@ -1,21 +1,27 @@
 package healthcaresystem;
 
+import dao.PatientDAO;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
+import pojo.PatientPojo;
 
 public class AddPatientForm extends JFrame implements ActionListener {
 
     JLabel lblHeader, lblPatientName, lblEmail, lblContact, lblAddress, lblDescription, lblEnqDate;
     JTextField txtPatientName, txtEmail, txtContact, txtAddress, txtDescription, txtEnqDate;
     JButton btnRegister;
-   
+
     Container c;
 
     AddPatientForm() {
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         setLayout(null);
-        c=this.getContentPane();
+        c = this.getContentPane();
         lblHeader = new JLabel("FILL PATIENT DETAILS HERE");
         lblPatientName = new JLabel("Patient Name :");
         lblEmail = new JLabel("EMAIL :");
@@ -52,7 +58,7 @@ public class AddPatientForm extends JFrame implements ActionListener {
         txtAddress.setBounds(200, 250, 170, 30);
         txtDescription.setBounds(200, 300, 170, 30);
         txtEnqDate.setBounds(200, 350, 170, 30);
-           
+
         c.add(lblHeader);
         c.add(lblPatientName);
         c.add(lblEmail);
@@ -60,31 +66,59 @@ public class AddPatientForm extends JFrame implements ActionListener {
         c.add(lblAddress);
         c.add(lblDescription);
         c.add(lblEnqDate);
-        
-        
+
         c.add(txtPatientName);
         c.add(txtEmail);
         c.add(txtContact);
         c.add(txtAddress);
         c.add(txtDescription);
         c.add(txtEnqDate);
-        
-        
+
         c.add(btnRegister);
-        
+
         //set the positions of the buttons on form
         btnRegister.setBounds(150, 400, 100, 30);
+        btnRegister.addActionListener(this);
         //btnReset.setBounds(300, 400, 100, 30);
-        setSize(500,500);
+        setSize(500, 500);
         setVisible(true);
+    }
+
+    public void insertData(PatientPojo patientpojo) {
+        String p_name = txtPatientName.getText().toString();
+        String p_email = txtEmail.getText().toString();
+        String p_contact = txtContact.getText().toString();
+        String p_address = txtAddress.getText().toString();
+        String p_description = txtDescription.getText().toString();
+        String p_enq = txtEnqDate.getText().toString();
+        patientpojo.setpName(p_name);
+        patientpojo.setpEmail(p_email);
+        patientpojo.setpContact(p_contact);
+        patientpojo.setpAddress(p_address);
+        patientpojo.setpDescription(p_description);
+        patientpojo.setpEnquiryDate(p_enq);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==btnRegister){
-            
+
+        PatientPojo patientpojo = new PatientPojo();
+        insertData(patientpojo);
+        dao.PatientDAO patientdao = new PatientDAO();
+        try {
+            boolean b = patientdao.isInsert(patientpojo);
+            if (b) {
+
+                JOptionPane.showMessageDialog(this, "INSERTED DATA SUCESSFULLY..");
+            } else {
+
+                JOptionPane.showMessageDialog(this, "NOT INSERTED DATA SUCESSFULLY..", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "EXCEPTION IS" + e, "ERROR", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(AddPatientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
 }
