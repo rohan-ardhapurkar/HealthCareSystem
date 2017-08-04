@@ -8,10 +8,12 @@ import pojo.PatientPojo;
 
 public class HealthCareMaster extends JFrame implements ChangeListener {
 
-    JTabbedPane jtp, patient, disease;
+    JTabbedPane jtp, patient, disease, medicine, report;
     JPanel patientPanel, diseasePanel, medicinePanel, reportPanel;
     JPanel addPatient, viewPatient, updatePatient;
     JPanel addDiseaseType, addDisease, updateDisease, viewDisease;
+    JPanel addMedicine, viewMedicines, updateMedicines;
+    JPanel viewReports, viewGraphs;
     String center = BorderLayout.CENTER;
 
     public HealthCareMaster() {
@@ -155,6 +157,43 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
 
     }
 
+    public void addMedicinePane() {
+        medicinePanel.setLayout(null);
+        addMedicine = new JPanel();
+        viewMedicines = new JPanel();
+        updateMedicines = new JPanel();
+
+        medicine = new JTabbedPane();
+
+        medicine.setBounds(40, 40, 600, 400);
+
+        medicine.add("ADD MEDICINE", addMedicine);
+        medicine.add("VIEW MEDICINES", viewMedicines);
+        medicine.add("UPDATE MEDICINES", updateMedicines);
+
+        medicinePanel.add(medicine, center);
+        medicinePanel.setSize(800, 800);
+        medicinePanel.setVisible(true);
+
+    }
+
+    public void addReportPane() {
+        reportPanel.setLayout(null);
+        viewReports = new JPanel();
+        viewGraphs = new JPanel();
+
+        report = new JTabbedPane();
+
+        report.setBounds(40, 40, 600, 400);
+
+        report.add("VIEW REPORTS", viewReports);
+        report.add("VIEW GRAPHS", viewGraphs);
+
+        reportPanel.add(report, center);
+        reportPanel.setSize(800, 800);
+        reportPanel.setVisible(true);
+    }
+
     @Override
     public void stateChanged(ChangeEvent e) {
         JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
@@ -163,6 +202,12 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
             addPatientPane();
         } else if (index == 1) {
             addDiseasePane();
+        } else if (index == 2) {
+            addMedicinePane();
+
+        } else if (index == 3) {
+
+            addReportPane();
         }
 
     }
