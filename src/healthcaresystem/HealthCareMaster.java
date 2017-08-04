@@ -8,9 +8,12 @@ import pojo.PatientPojo;
 
 public class HealthCareMaster extends JFrame implements ChangeListener {
 
-    JTabbedPane jtp;
+    JTabbedPane jtp, patient, disease;
     JPanel patientPanel, diseasePanel, medicinePanel, reportPanel;
-    String center=BorderLayout.CENTER;
+    JPanel addPatient, viewPatient, updatePatient;
+    JPanel addDiseaseType, addDisease, updateDisease, viewDisease;
+    String center = BorderLayout.CENTER;
+
     public HealthCareMaster() {
         //set layout to null for setting bounds 
         setLayout(null);
@@ -35,14 +38,15 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
         jtp.add("Medicine", medicinePanel);
         jtp.add("Report", reportPanel);
 
-        this.add(jtp,center);
+        jtp.setSize(800, 500);
+        this.add(jtp, center);
         setLocation(50, 50);
-        setSize(600, 600);
+        setSize(900, 600);
         setVisible(true);
 
     }
 
-    public void addPatientPanel(){
+    /* public void addPatientPanel(){
         patientPanel.setLayout(null);
         patientPanel.setAutoscrolls(true);
         
@@ -108,16 +112,59 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
         
         
         
+    }*/
+    public void addPatientPane() {
+
+        patientPanel.setLayout(null);
+        addPatient = new JPanel();
+        viewPatient = new JPanel();
+        updatePatient = new JPanel();
+
+        patient = new JTabbedPane();
+
+        patient.setBounds(40, 40, 600, 400);
+
+        patient.add("ADD PATIENT", addPatient);
+        patient.add("VIEW PATIENT", viewPatient);
+        patient.add("UPDATE PATIENT", updatePatient);
+
+        patientPanel.add(patient, center);
+        patientPanel.setSize(800, 800);
+        patientPanel.setVisible(true);
     }
+
+    public void addDiseasePane() {
+        diseasePanel.setLayout(null);
+        addDiseaseType = new JPanel();
+        addDisease = new JPanel();
+        updateDisease = new JPanel();
+        viewDisease = new JPanel();
+
+        disease = new JTabbedPane();
+
+        disease.setBounds(40, 40, 600, 400);
+
+        disease.add("ADD DISEASE TYPE", addDiseaseType);
+        disease.add("ADD NEW DISEASE", addDisease);
+        disease.add("UPDATE DISEASE", updateDisease);
+        disease.add("VIEW DISEASE", viewDisease);
+
+        diseasePanel.add(disease, center);
+        diseasePanel.setSize(800, 800);
+        diseasePanel.setVisible(true);
+
+    }
+
     @Override
     public void stateChanged(ChangeEvent e) {
-      JTabbedPane sourceTabbedPane=(JTabbedPane)e.getSource();
-      int index=sourceTabbedPane.getSelectedIndex();
-        if(index==0){
-            addPatientPanel();
+        JTabbedPane sourceTabbedPane = (JTabbedPane) e.getSource();
+        int index = sourceTabbedPane.getSelectedIndex();
+        if (index == 0) {
+            addPatientPane();
+        } else if (index == 1) {
+            addDiseasePane();
         }
-      
-        
+
     }
 
 }
