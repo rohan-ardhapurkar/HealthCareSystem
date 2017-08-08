@@ -72,16 +72,18 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
     public void addDiseasePane() {
         diseasePanel.setLayout(null);
         AddDiseaseTypeForm adf=new AddDiseaseTypeForm();
-        
+        AddNewDiseaseForm andf=new AddNewDiseaseForm();
+           UpdateDiseaseForm updf=new UpdateDiseaseForm();
+           ViewDiseaseForm vdf=new ViewDiseaseForm();
         
         disease = new JTabbedPane();
         
         disease.setBounds(40, 40, 600, 400);
         
         disease.add("ADD DISEASE TYPE", adf);
-        disease.add("ADD NEW DISEASE", addDisease);
-        disease.add("UPDATE DISEASE", updateDisease);
-        disease.add("VIEW DISEASE", viewDisease);
+        disease.add("ADD NEW DISEASE", andf);
+        disease.add("UPDATE DISEASE", updf);
+        disease.add("VIEW DISEASE", vdf);
         
         diseasePanel.add(disease, center);
         diseasePanel.setSize(800, 800);
