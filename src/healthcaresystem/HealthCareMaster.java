@@ -93,15 +93,13 @@ public class HealthCareMaster extends JFrame implements ChangeListener {
     
     public void addMedicinePane() {
         medicinePanel.setLayout(null);
-        addMedicine = new JPanel();
-        viewMedicines = new JPanel();
-        updateMedicines = new JPanel();
-        
+       AddNewMedicine anm=new AddNewMedicine();
+       
         medicine = new JTabbedPane();
         
         medicine.setBounds(40, 40, 600, 400);
         
-        medicine.add("ADD MEDICINE", addMedicine);
+        medicine.add("ADD MEDICINE",anm);
         medicine.add("VIEW MEDICINES", viewMedicines);
         medicine.add("UPDATE MEDICINES", updateMedicines);
         

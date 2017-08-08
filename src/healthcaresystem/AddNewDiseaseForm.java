@@ -1,5 +1,6 @@
 package healthcaresystem;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +13,7 @@ public class AddNewDiseaseForm extends JPanel {
     JComboBox diseaseType;
     JLabel lbldiseaseName, lblDiseaseDescription;
     JTextField txtDiseaseName, txtDiseaseDescription;
-
+    JButton addbtn;
     AddNewDiseaseForm() {
 
         setLayout(null);
@@ -26,11 +27,13 @@ public class AddNewDiseaseForm extends JPanel {
         txtDiseaseName = new JTextField();
         txtDiseaseDescription = new JTextField();
 
+        
+        addbtn=new JButton("ADD DISEASE");
         //set posititions of the fields on the form
         diseaseType.setBounds(150, 50, 150, 30);
         lbldiseaseName.setBounds(70, 150, 150, 30);
         lblDiseaseDescription.setBounds(70, 200, 150, 30);
-
+        addbtn.setBounds(70,250,150,30);
         txtDiseaseName.setBounds(250, 150, 150, 30);
         txtDiseaseDescription.setBounds(250, 200, 150, 30);
 
@@ -38,7 +41,7 @@ public class AddNewDiseaseForm extends JPanel {
         add(diseaseType);
         add(lbldiseaseName);
         add(lblDiseaseDescription);
-
+        add(addbtn);
         add(txtDiseaseName);
         add(txtDiseaseDescription);
 
