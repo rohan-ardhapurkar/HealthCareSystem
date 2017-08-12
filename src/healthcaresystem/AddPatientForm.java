@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package healthcaresystem;
 
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Sandip
- */
-public class AddPatientForm extends JPanel
+public class AddPatientForm extends JPanel implements ActionListener
 {  
     JLabel lblpname,lblemail,lblcontact,lbladdress,lbldescription,lblenqdate;
     JTextField txtName,txtEmail,txtContact,txtAddress,txtDescription,txtEnqdate;
@@ -66,6 +61,7 @@ public class AddPatientForm extends JPanel
         //set the positions of the buttons 
         
         btnSubmit.setBounds(50,350,100,30);
+        btnSubmit.addActionListener(this);
         btnReset.setBounds(200,350,100,30);
         // add all the fields on the form
         add(lblpname);add(lblemail);add(lblcontact);
@@ -77,5 +73,42 @@ public class AddPatientForm extends JPanel
         add(btnSubmit);add(btnReset);
           setVisible(true);
           setSize(800,900);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==btnSubmit){
+        dao.PatientDAO patient=new dao.PatientDAO();
+        pojo.PatientPojo patientPojo=new pojo.PatientPojo();
+        String patientName=txtName.getText();
+        String patientEmail=txtEmail.getText();
+        String patientContact=txtContact.getText();
+        String patientAddress=txtAddress.getText();
+        String patientDescription=txtDescription.getText();
+        String patientEnqDate=txtEnqdate.getText();
+        
+        patientPojo.setpName(patientName);
+        patientPojo.setpEmail(patientEmail);
+        patientPojo.setpContact(patientContact);
+        patientPojo.setpAddress(patientAddress);
+        patientPojo.setpDescription(patientDescription);
+        patientPojo.setpEnquiryDate(patientEnqDate);
+        try{
+        boolean b=patient.isInsert(patientPojo);
+        if(b){
+            
+            System.out.println("Inserted");
+        }
+        else{
+            System.out.println("Not Inserted");
+            
+        }
+        }
+         catch(Exception exception){
+             
+             System.out.println("Exception is Add Patient is :"+exception);
+             
+         }
+       }
     }
 }

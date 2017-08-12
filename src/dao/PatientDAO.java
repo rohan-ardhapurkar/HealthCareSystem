@@ -4,9 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PatientDAO {
-    ConnDAO connection=ConnDAO.getInstance();
-    Connection conn; 
+public class PatientDAO extends ConnDAO{
     PreparedStatement stmt;
     ResultSet rs;
     public boolean isInsert(pojo.PatientPojo patient)throws SQLException
